@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 20:24:19 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/05/08 18:39:01 by jbach-ba         ###   ########.fr       */
+/*   Created: 2023/06/13 14:00:37 by jbach-ba          #+#    #+#             */
+/*   Updated: 2023/06/13 14:48:27 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, unsigned long len)
+int	ft_strncmp(const char *s1, const char *s2, unsigned long n)
 {
-	unsigned int	idx;
-	int				inc;
-	char			*ddst;
-	const char		*ssrc;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	ddst = (char *)dst;
-	ssrc = (const char *)src;
-	if (ddst == 0 && ssrc == 0)
-		return (dst);
-	if (dst < src)
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	while (*ptr1 != '\0' && n)
 	{
-		idx = 0;
-		inc = 1;
+		if (*ptr1 != *ptr2)
+			return (*ptr1 - *ptr2);
+		++ptr1;
+		++ptr2;
+		--n;
 	}
+	if (n)
+		return (*ptr1 - *ptr2);
 	else
-	{
-		idx = len - 1;
-		inc = -1;
-	}
-	while (len--)
-	{
-		ddst[idx] = ssrc[idx];
-		idx += inc;
-	}
-	return (dst);
+		return (0);
 }

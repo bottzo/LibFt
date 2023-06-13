@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 20:24:19 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/05/08 18:39:01 by jbach-ba         ###   ########.fr       */
+/*   Created: 2023/06/13 13:33:12 by jbach-ba          #+#    #+#             */
+/*   Updated: 2023/06/13 13:52:17 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, unsigned long len)
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	idx;
-	int				inc;
-	char			*ddst;
-	const char		*ssrc;
+	char	*ret;
+	char	var;
 
-	ddst = (char *)dst;
-	ssrc = (const char *)src;
-	if (ddst == 0 && ssrc == 0)
-		return (dst);
-	if (dst < src)
+	var = (char)c;
+	ret = (void *)0;
+	while (*s != '\0')
 	{
-		idx = 0;
-		inc = 1;
+		if (*s == var)
+			ret = (char *)s;
+		++s;
 	}
-	else
-	{
-		idx = len - 1;
-		inc = -1;
-	}
-	while (len--)
-	{
-		ddst[idx] = ssrc[idx];
-		idx += inc;
-	}
-	return (dst);
+	if (*s == var)
+		ret = (char *)s;
+	return (ret);
 }
