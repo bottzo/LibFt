@@ -6,26 +6,42 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:59:44 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/06/13 12:50:48 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:43:35 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned long	ft_strlcat(char *dst, const char *src, unsigned long dstsize)
 {
-	unsigned int	size;
+	unsigned int	length;
+	unsigned int	srclength;
+	unsigned int	dstlength;
 
-	while (*dst++ != '\0' && dstsize--)
-		;
-	while (*src != '\0' && dstsize-- > 0)
-		*dst++ = *src++;
+	length = 0;
+	dstlength = 0;
+	while (*dst != '\0')
+	{
+		++length;
+		++dst;
+		++dstlength;
+	}
+	srclength = 0;
+	while (*src != '\0')
+	{
+		if (dstsize != 0 && length++ < dstsize - 1)
+			*dst++ = *src;
+		++src;
+		++srclength;
+	}
+	if (dstsize <= dstlength)
+		return (srclength + dstsize);
 	*dst = '\0';
-	return (dstsize);
+	return (length);
 }
 
 /*#include <string.h>
 #include <stdio.h>
 int main()
-{
+
 	//char str[30] = "ola ola";
 	//char str2[] = "deu deu";
 	//strlcat(str, str2, 21);
