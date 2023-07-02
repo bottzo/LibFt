@@ -6,7 +6,7 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:43:37 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/07/02 12:48:14 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/07/02 14:47:12 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -35,7 +35,8 @@ void			*ft_memchr(const void *s, int c, unsigned long n);
 int				ft_memcmp(const void *s1, const void *s2, unsigned long n);
 char			*ft_strnstr(const char *b, const char *l, unsigned long len);
 int				ft_atoi(const char *str);
-//char			*ft_substr(char const *s, unsigned int start, unsigned long len);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strtrim(char const *s1, char const *set);
+char			*ft_substr(char const *s, unsigned int ini, unsigned long len);
 
 #endif

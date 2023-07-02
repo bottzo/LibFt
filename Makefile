@@ -23,7 +23,9 @@ SRC = ft_isalpha.c \
 	  ft_strnstr.c \
 	  ft_strlcat.c \
 	  ft_atoi.c \
-	  ft_strjoin.c
+	  ft_strjoin.c \
+	  ft_strtrim.c \
+	  ft_substr.c
 
 all: ${NAME}
 
