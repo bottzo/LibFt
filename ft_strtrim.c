@@ -6,7 +6,7 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 13:09:09 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/07/02 14:09:41 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:54:42 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	idx = 0;
 	s1len = ft_strlen(s1);
 	trim((char *)s1, (char *)set, s1len, trims);
-	ret = (char *)malloc(s1len - trims[0] - trims[1] + 1);
+	if (trims[0] == s1len)
+		ret = (char *)malloc(1);
+	else
+		ret = (char *)malloc(s1len - trims[0] - trims[1] + 1);
 	if (!ret)
 		return (NULL);
 	idx = trims[0];
@@ -69,6 +72,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 /*#include <stdio.h>
 int main()
 {
-	printf("%s", ft_strtrim("wefsef", " sdgsg"));	
+	printf("%s", ft_strtrim(" \t \t \n  \n\n\n\t", " \n\t"));	
 	return 0;
 }*/
