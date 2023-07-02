@@ -6,7 +6,7 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:31:32 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/06/28 12:36:44 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:25:34 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	*ft_calloc(unsigned long nmemb, unsigned long size)
 	char			*ptr;
 
 	array_size = size * nmemb;
-	if (!array_size)
-		return ((void *)0);
 	ptr = (char *)malloc(array_size);
 	if (ptr == NULL)
 		return (NULL);
@@ -33,7 +31,9 @@ void	*ft_calloc(unsigned long nmemb, unsigned long size)
 /*#include <stdio.h>
 int main()
 {
-    int *a = (int*)calloc(10,sizeof(int));
+	if (ft_calloc(0,0) == (void *)0)
+		printf("hi");
+	int *a = (int*)calloc(10,sizeof(int));
     int *b = (int*)ft_calloc(10,sizeof(int));
     for(int i = 0; i < 10; ++i)
         printf("%d, ", a[i]);
