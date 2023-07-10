@@ -6,7 +6,7 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:43:37 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/07/02 14:47:12 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:58:30 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -38,5 +38,13 @@ int				ft_atoi(const char *str);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int ini, unsigned long len);
+char			**ft_split(char const *s, char c);
+char			*ft_itoa(int n);
+char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putendl_fd(char *s, int fd);
+void			ft_putnbr_fd(int n, int fd);
 
 #endif
