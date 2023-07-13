@@ -5,84 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 19:49:27 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/07/02 20:02:42 by jbach-ba         ###   ########.fr       */
+/*   Created: 2023/07/13 11:48:14 by jbach-ba          #+#    #+#             */
+/*   Updated: 2023/07/13 11:56:51 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
-static void	freeall(char** ret)
+static void	freeall(char **ret)
 {
-	while (*ret != NULL)
-		free(*ret++);
+	unsigned int	idx;
+
+	idx = 0;
+	while (ret[idx] != NULL)
+		free(ret[idx++]);
 	free(ret);
 }
 
-static int	addnew(char	***in, char *new)
+static unsigned int	count_words(const char *s, char c)
 {
-	char			**curr;
-	long			idx;
-	char			**ret;
+	unsigned int	ret;
 
-	if (new == NULL)
-		return (0);
-	curr = *in;
-	idx = 0;
-	while (curr[idx] != NULL)
-		++idx;
-	ret = (char **)malloc(sizeof(char *) * (++idx + 1));
-	if (!ret)
+	ret = 0;
+	while (*s != '\0')
 	{
-		freeall(*in);
-		return (0);
+		while (*s == c)
+			++s;
+		if (*s != '\0')
+			++ret;
+		while (*s != c && *s != '\0')
+			++s;
 	}
-	ret[idx--] = NULL;
-	ret[idx--] = new;
-	while (idx >= 0)
+	return (ret);
+}
+
+static int	split_body(char **ret, const char *s, char c)
+{
+	unsigned int	s_idx;
+	unsigned int	w_ini;
+	unsigned int	ret_idx;
+
+	s_idx = 0;
+	ret_idx = 0;
+	while (s[s_idx] != '\0')
 	{
-		ret[idx] = curr[idx];
-		--idx;
+		while (s[s_idx] == c)
+			++s_idx;
+		if (s[s_idx] != '\0')
+		{
+			w_ini = s_idx;
+			while (s[s_idx] != c && s[s_idx] != '\0')
+				++s_idx;
+			ret[ret_idx] = ft_substr(s, w_ini, s_idx - w_ini);
+			if (ret[ret_idx++] == NULL)
+			{
+				freeall(ret);
+				return (0);
+			}
+		}
 	}
-	free(curr);
-	*in = ret;
 	return (1);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	unsigned int	idx;
-	unsigned int	ini;
 	char			**ret;
+	unsigned int	words;
 
-	idx = 0;
-	ini = idx;
-	ret = (char **)malloc(sizeof(char *));
+	words = count_words(s, c);
+	ret = (char **)malloc((words + 1) * sizeof(char *));
 	if (!ret)
 		return (NULL);
-	*ret = NULL;
-	while (s[idx] != '\0')
-	{
-		while (s[idx] == c)
-			++idx;
-		if (s[idx] != '\0')
-		{
-			ini = idx;
-			while (s[idx] != c)
-				++idx;
-			if (!addnew(&ret, ft_substr(s, ini, idx - ini)))
-				return (NULL);
-		}
-	}
+	ret[words] = NULL;
+	if (!split_body(ret, s, c))
+		return (NULL);
 	return (ret);
 }
 
 /*#include <stdio.h>
 int main()
 {
-	char **ret = ft_split(" Hola   que tal  ", ' ');
-	while(*ret != NULL)
-		printf("%s\n", *ret++);
-	return (0);
+    char **splited = ft_split(" hola  que    tal ! bien", ' ');
+    while (*splited != NULL)
+        printf("%s\n", *splited++);
+    return 0;
 }*/
