@@ -34,8 +34,11 @@ SRC = ft_isalpha.c \
 	  ft_putstr_fd.c \
 	  ft_putendl_fd.c \
 	  ft_putnbr_fd.c
-
 OBJ = ${SRC:.c=.o}
+
+BNS = ft_lstnew_bonus.c \
+	  ft_lstadd_front_bonus.c
+BOBJ = ${BNS:.c=.o}
 
 all: ${NAME}
 
@@ -50,3 +53,7 @@ fclean: clean
 	rm -f *.a
 
 re: fclean all
+
+bonus: ${NAME}
+	gcc -Wall -Werror -Wextra -c ${BNS}
+	ar -rc ${NAME} ${BOBJ}

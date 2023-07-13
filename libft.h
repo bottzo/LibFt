@@ -6,7 +6,7 @@
 /*   By: jbach-ba <jbach-ba@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:43:37 by jbach-ba          #+#    #+#             */
-/*   Updated: 2023/07/10 18:58:30 by jbach-ba         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:17:17 by jbach-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -46,5 +46,12 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+t_list			*ft_lstnew(void *content);
+void			ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif
